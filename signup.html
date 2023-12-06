@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup To Bookworms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        button {
+            background: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background: linear-gradient(60deg, rgb(147, 221, 147),rgb(247, 196, 101));
+            color: black;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .switch {
+            margin-top: 10px;
+        }
+
+        .switch a {
+            text-decoration: none;
+            color: #4caf50;
+        }
+
+        .switch a:hover {
+            text-decoration: underline;
+        }
+
+        body{
+            background: linear-gradient(90deg, rgb(147, 221, 147),rgb(247, 196, 101))
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Signup</h2>
+        <form action="#" method="post">
+            <input id="username" type="text" name="username" placeholder="Username" required>
+            <input id="email" type="email" name="email" placeholder="Email" required>
+            <input id="password" type="password" name="password" placeholder="Password" required>
+            <p class="switch"><a href="#">Forgot Password</a></p>
+            <p id="validationResult"></p>
+            <button type="button" onclick="validatePassword()">Sign Up</button>
+            
+        </form>
+        <div class="switch">
+            <p>Already have an account? <a href="login.html">Login</a></p>
+            
+        </div>
+    </div>
+    <script>
+        function validatePassword() {
+        const passwordInput = document.getElementById('password');
+        const validationResult = document.getElementById('validationResult');
+        const emailInput = document.getElementById("email");
+        const userInput = document.getElementById("username")
+        // Check if the password meets the following criteria:
+        // 1. Minimum length of 8 characters
+        // 2. Contains at least one uppercase letter
+        // 3. Contains at least one lowercase letter
+        // 4. Contains at least one digit
+        // 5. Contains at least one special character
+
+        const minLength = 8;
+        const uppercaseRegex = /[A-Z]/;
+        const lowercaseRegex = /[a-z]/;
+        const digitRegex = /\d/;
+        const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
+
+        const password = passwordInput.value;
+        const email = emailInput.value;
+        const user = userInput.value;
+
+        if (user===""){
+            validationResult.textContent="Enter a Username";
+            validationResult.style.color="red";
+        }
+        else{
+            if (
+        email===""
+        ){
+            validationResult.textContent="Enter an email";
+            validationResult.style.color="red";
+        }
+
+        else{
+            if (
+                password.length >= minLength &&
+                uppercaseRegex.test(password) &&
+                lowercaseRegex.test(password) &&
+                digitRegex.test(password) &&
+                specialCharRegex.test(password)
+            ) {
+            } 
+            else {
+                validationResult.textContent = "Password is not valid. The password length must be 8 character and must contain uppercase letter(A-Z), lower-case letters(a-z), numbers(0-9) and special characters(/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;)";
+                validationResult.style.color = "red";
+                }
+            }
+        }
+        }
+    </script>
+</body>
+</html>
